@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maruf Portfolio</title>
+
+<style>
+/* ------------------ GLOBAL STYLES ------------------ */
+:root {
+  --navy: #0a0f24;
+  --skyblue: #4db8ff;
+  --purple: #a066ff;
+  --text-light: #ffffff;
+  --text-dark: #111111;
+  --bg-light: #ffffff;
+  --bg-dark: #0a0f24;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  scroll-behavior: smooth;
+  transition: background 0.4s, color 0.4s;
+  overflow-x: hidden;
+}
+
+.glow {
+  text-shadow: 0 0 10px var(--skyblue), 0 0 20px var(--skyblue);
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10,15,36,0.7);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: var(--skyblue);
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: var(--purple);
+  text-shadow: 0 0 8px var(--purple);
+}
+
+#modeToggle {
+  padding: 7px 15px;
+  border: 2px solid var(--skyblue);
+  background: transparent;
+  color: var(--skyblue);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+#modeToggle:hover {
+  background: var(--skyblue);
+  color: black;
+}
+
+/* ------------------ BACKGROUND ANIMATION ------------------ */
+.bg-animation {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(circle at center, #1b2545, #000);
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--skyblue);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--skyblue);
+  animation: float 10s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh) scale(0.5);}
+  to { transform: translateY(-10vh) scale(1.3);}
+}
+
+/* ------------------ SECTION STYLES ------------------ */
+section {
+  padding: 120px 10%;
+  min-height: 100vh;
+}
+
+/* HOME */
+#home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#home h1 {
+  font-size: 3rem;
+  color: var(--skyblue);
+}
+
+#home h2 {
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.typeBox {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: var(--purple);
+  height: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  background: var(--purple);
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ABOUT */
+#about p {
+  max-width: 600px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* PROJECTS */
+.project-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--skyblue);
+  padding: 25px;
+  border-radius: 12px;
+  margin: 20px 0;
+  transition: 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px var(--purple);
+}
+
+/* CONTACT */
+form input, form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 2px solid var(--skyblue);
+  background: transparent;
+  color: white;
+}
+
+form button {
+  padding: 10px 20px;
+  border: none;
+  background: var(--skyblue);
+  color: black;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+form button:hover {
+  background: var(--purple);
+  color: white;
+  box-shadow: 0 0 15px var(--purple);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav {flex-direction: column;}
+  nav div {margin-top: 10px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Animation -->
+<div class="bg-animation" id="bgAnimation"></div>
+
+<!-- Navigation -->
+<nav>
+  <div class="logo glow">Maruf</div>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button id="modeToggle">Light Mode</button>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+  <h1 class="glow">Welcome to My Portfolio!</h1>
+  <h2>I'm Maruf</h2>
+  <div class="typeBox">
+    <span id="typingText"></span><span class="cursor"></span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="glow">About Me</h2>
+  <p>
+    I am Maruf — a passionate developer creating interactive and modern user experiences.
+    I enjoy designing smooth animations and building responsive web applications with glowing UI effects.
+  </p>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2 class="glow">Projects</h2>
+
+  <div class="project-card">
+    <h3>Project One</h3>
+    <p>A glowing UI project with smooth hover effects.</p>
+  </div>
+
+  <div class="project-card">
+    <h3>Project Two</h3>
+    <p>Interactive web application with modern animations.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="glow">Contact Me</h2>
+
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="5" placeholder="Your Message"></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<script>
+/* ------------------ BACKGROUND PARTICLES ------------------ */
+const bg = document.getElementById("bgAnimation");
+for(let i=0;i<40;i++){
+  let p = document.createElement("div");
+  p.classList.add("particle");
+  p.style.left = Math.random()*100 + "vw";
+  p.style.animationDuration = 8 + Math.random()*10 + "s";
+  p.style.opacity = 0.3 + Math.random()*0.7;
+  bg.appendChild(p);
+}
+
+/* ------------------ TYPING EFFECT ------------------ */
+const titles = ["Software Developer", "Creative Developer", "Developer"];
+let i=0,j=0,deleting=false;
+
+function typeEffect(){
+  const textBox = document.getElementById("typingText");
+  if(!deleting && j<=titles[i].length){
+    textBox.textContent = titles[i].substring(0,j++);
+  }else if(deleting && j>=0){
+    textBox.textContent = titles[i].substring(0,j--);
+  }
+  if(j===titles[i].length+2) deleting=true;
+  if(j<0){
+    deleting=false;
+    i=(i+1)%titles.length;
+  }
+  setTimeout(typeEffect,deleting?70:120);
+}
+typeEffect();
+
+/* ------------------ DARK/LIGHT MODE ------------------ */
+let light=false;
+document.getElementById("modeToggle").onclick=()=>{
+  light=!light;
+  document.body.style.background = light?"var(--bg-light)":"var(--bg-dark)";
+  document.body.style.color = light?"var(--text-dark)":"var(--text-light)";
+  document.getElementById("modeToggle").textContent = light?"Dark Mode":"Light Mode";
+};
+</script>
+
+</body>
+</html>
